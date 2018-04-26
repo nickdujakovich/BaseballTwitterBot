@@ -16,7 +16,6 @@ var params = {
     //attachment_url:"",
 }
 var callback = function (err, response, body) {
-    //console.log('ERROR [%s]', err, body);
     console.log('Callback: ', response);
 };
 
@@ -32,17 +31,12 @@ function ApiCall() {
     })
 
     getElements = function(response) {
-        /*if(response.data.data.children[1].data.title + " " + response.data.data.children[1].data.url == params.status) {
-            console.log("Duplicate. Waiting 1 more hour.");
-            setTimeout(ApiCall, 3600000);
-        }*/
         params.status = response.data.data.children[0].data.title + " " + response.data.data.children[0].data.url;
         console.log(params);
         SendTweet(params);
  }   
 }
 function SendTweet(params) {
-    //Twitter.post("hello", error, success);
     Twitter.post("statuses/update", params, callback);
 }
 
